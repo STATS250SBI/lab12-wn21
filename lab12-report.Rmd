@@ -1,0 +1,159 @@
+---
+title: "STATS 250 Lab 12 Report"
+author: "YOUR NAME GOES HERE IN QUOTES"
+date: "TODAY'S DATE GOES HERE IN QUOTES"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    toc_collapsed: true
+    theme: lumen
+    css: assets/styles.css
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+source("plot_t.R") # This imports the plot_t() function
+```
+
+# Instructions
+
+Welcome to Lab 12! Complete the following exercises designed to help you understand the simulation process for making inference about a population proportion. It is important that you keep your answers inside the ".answer" blocks. Do NOT delete the three colon blocks (:::) and keep your responses between them. Use the tutorial for help, and feel free to ask questions on Piazza or email your lab instructor.
+
+Depending on your instruction method (synchronous or asynchronous), complete the following exercises collaboratively.
+
+1. **Synchronous remote:** Work with your peers in breakout rooms during the synchronous lab.
+1. **Asynchronous remote:** Use Piazza for asynchronous collaboration.
+
+**Collaborators:** If applicable, replace this text with the names of anyone you collaborated with on this project.
+
+**NOTE:** If you perform a calculation in R and assign it a name but do not print the value in your knitted document, we reserve the right to deduct points.
+
+# Background
+
+:::{.background}
+In this assignment, we’ll be using a data set we will call tuition that contains information about cost of attendance for 1,861 colleges and universities around the United States. Note that the variables we are using, `in_state_tuition` and `room_and_board` have been modified to show the cost in **thousands** of US Dollars.
+:::
+
+```{r readData}
+tuition <- read.csv("tuition.csv", stringsAsFactors = T)
+```
+
+# Lab Assignment
+
+## Question 1
+:::{.question}
+Perform a linear regression of the cost of room and board on the in-state tuition and whether the institution is for profit, private, or public (the `type`) variable. Store the regression model as a variable and use R to summarize the results.
+:::
+
+:::{.answer}
+```{r question1, error = T}
+# Replace this comment with code required for Question 1. (Remember that this text is a comment, so R ignores it; you can delete it if you want.) 
+
+```
+:::
+
+## Question 2
+:::{.question}
+Write the equation of the estimated linear regression line. Be sure to define each variable in context.
+:::
+
+:::{.answer}
+Replace this text with your answer to Question 2.
+:::
+
+
+## Question 3
+:::{.question}
+Check the conditions necessary to ensure that the estimated regression line is in fact the line of best fit. Comment on whether each condition is satisfied.
+:::
+
+:::{.answer}
+```{r question3, error = T}
+# Replace this comment with code required for Question 3. (Remember that this text is a comment, so R ignores it; you can delete it if you want.) 
+
+```
+
+Replace this text with your comments on each condition.
+
+:::
+
+## Question 4
+:::{.question}
+Predict the cost of room and board for an institution that is a private university and in-state tuition is $5000. Use R as a calculator to show your work. 
+:::
+
+:::{.answer}
+```{r question4, error = T}
+# Replace this comment with code required for Question 4. (Remember that this text is a comment, so R ignores it; you can delete it if you want.) 
+
+```
+Replace this text with your answer to Question 4.
+:::
+
+## Question 5
+:::{.question}
+Interpret each of the slopes in context.
+:::
+
+:::{.answer}
+Replace this text with your answer to Question 5.
+:::
+
+## Question 6
+:::{.question}
+Interpret the value of the horizontal intercept in context.
+:::
+
+:::{.answer}
+Replace this text with your answer to Question 6.
+:::
+
+## Question 7
+:::{.question}
+What is the value of the residual for the University of Michigan. Does the regression line underestimate or overestimate the cost of room and board? The following code is provided to help you view the data collected for the University of Michigan.
+:::
+
+:::{.answer}
+```{r question7, error = T}
+subset(tuition, name == "University of Michigan")
+# replace this comment with any code you need to compute the residual
+
+```
+
+Replace this text with your answer to Question 7.
+:::
+
+## Question 8
+:::{.question}
+Make a scatterplot of the cost of room and board on the in-state tuition. Change the plotting character and the color of the plotting character to reflect whether the data point is from an institution that is for profit, private, or public (the `type` variable). Include a corresponding legend.
+:::
+
+:::{.answer}
+```{r question8, error = T}
+# replace this comment with your code for Question 8
+
+```
+:::
+
+## Wrap-Up and Submission
+
+At the top of the document, make sure you've changed the `author` field to your name (in quotes!). If you'd like, change the date as well.
+
+**When you've finished the lab, click the Knit button one last time.**
+
+
+### Submission instructions
+#### If you're using RStudio Cloud
+1. In the Files pane, check the box next to `lab11report.html`.
+2. Click More > Export...
+3. Click Download and save the file on your computer in a folder you'll remember and be able to find later. You can just call the file `lab11report.html` or whatever else you'd like (as long as you remember what you called it).
+
+#### If you're using RStudio installed on your computer
+1. locate the `lab11report.html` file on your computer. The file will be saved in the location indicated at the top of the files pane.
+
+#### Submission to Canvas
+
+1. Click the "Assignments" panel on the left side of the page. Scroll to find "Lab 11", and open the assignment. Click "Submit Assignment". 
+2. Towards the bottom of the page, you'll be able to choose `lab11report.html` from the folder you saved it in from RStudio Cloud or noted if you're using RStudio Desktop. **You will only be able to upload a .html file -- do not upload any other file type.**
+  3. Click "Submit Assignment". You're done! 

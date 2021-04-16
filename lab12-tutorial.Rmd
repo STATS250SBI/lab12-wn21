@@ -1,0 +1,113 @@
+---
+title: "STATS 250 Lab 12"
+author: "Lab Dream Team"
+date: "Week of 4/19/2021"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    toc_collapsed: true
+    theme: lumen
+---
+  
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+if (!require(checkmate))
+  install.packages('checkmate')
+source("plot_t.R")
+```
+
+# Learning Objectives
+
+## Statistical Learning Objectives
+1. Learn about how to make inference about multiple linear regression parameters
+1. Learn about checking conditions for valid inference in multiple linear regression
+
+## R Learning Objectives
+1. Interpret output from `lm()` to make multiple linear regression inference
+1. Use R to check conditions for valid inference in multiple linear regression
+
+## Functions covered in this lab
+1. `lm()`
+1. `qqnorm()`
+1. `qqline()`
+1. `confint()`
+
+# Lab Demo
+
+## Multiple Linear Regression
+
+Let's remind ourselves of how to perform linear regression in R. Remember that in Lab 4 (yeah, that was a while ago, we know) we explored linear regression using the penguins data. Specifically, we looked at the linear relationship between body mass and bill length. This time, we're going to look at the relationship between body mass and *flipper* length.
+
+```{r penguins}
+penguins <- read.csv("penguins.csv", stringsAsFactors = TRUE)
+```
+
+Let's start by making a scatterplot of body mass on flipper length of a penguin, and add in the feature to plot by the species of the penguin. We will also include a legend for readability.
+
+```{r plotbygroup}
+plot(body_mass_g ~ flipper_length_mm,
+     data = penguins,
+     ylab = "Body Mass (g)", xlab = "Flipper Length (mm)",
+     main = "Penguin Body Mass vs. Flipper Length",
+     pch = c(0,1,2)[penguins$species],
+     col = c("darkorange1", "mediumorchid2", "darkcyan")[penguins$species])
+legend("topleft",
+       legend = c("Adelie", "Chinstrap", "Gentoo"),
+       pch = c(0,1,2),
+       col = c("darkorange1", "mediumorchid2", "darkcyan"))
+```
+
+Recall that to fit a linear regression model, we use the `lm()` function. We store the results as `mod1` so that we can refer to it later (most commonly in the `summary()` function). We will regress *body mass* **on** *flipper length* so that body mass is the response variable and flipper length is the explanatory variable. Here, we have another explanatory variable, species, which we signify with the `+` next to the first explanatory variable.
+
+```{r reg1}
+mod1 <- lm(body_mass_g ~ flipper_length_mm + species, data = penguins)
+summary(mod1)
+```
+
+The variables `speciesChinstrap` and `speciesGentoo` are the indicator variables for the species. 
+- When the penguin species is Adelie, `speciesChinstrap` = 0 and `speciesGentoo` = 0. 
+- When the penguin species is Chinstrap, `speciesChinstrap` = 1 and `speciesGentoo` = 0. 
+- When the penguin species is Gentoo, `speciesChinstrap` = 0 and `speciesGentoo` = 0.
+
+The equation for the regression line is (fill in the values):
+
+predicted y = **b0** + **b1** x1 + **b2** x2 + **b3** x3
+
+where y represents **fill this in with the response variable**, x1 represents **fill this in with the quantitative explanatory variable**, x2 represents **fill this in with the first indicator variable**, and x3 represents **fill this in with the second indicator variable**. 
+
+## Conditions & Diagnostic Plots
+
+We have the same conditions that we had before (LINE - see Lab 11) and can check them using the same two plots we made in Lab 11.
+
+```{r residualsplot}
+plot(mod1$residuals ~ mod1$fitted.values,
+     main = "Residuals vs. Fitted Plot",
+     xlab = "Fitted Values (body mass on flipper length and species",
+     ylab = "Residuals")
+```
+
+```{r qqplot}
+qqnorm(mod1$residuals,
+       main = "QQ Plot of Residuals for Body Mass on Flipper Length \nand Species")
+qqline(mod1$residuals)
+```
+
+## Code Cheat Sheet
+
+The formatting of this will be easier to read in the knitted version of the document.
+
+- **`lm(formula, data)`**
+  - `formula` is a symbolic description of the model you want to fit: recall the syntax is `response ~ explanatory1 + explanatory2 + ...`
+  - `data` is a data frame which contains the variables used in `formula`.
+- **`qqnorm(y, ...)`**
+  - `y` refers to the variable for which you want to create a Q-Q plot
+  - `...` lets you control graphical elements of the plot like `pch`, `col`, etc.
+- **`qqline(y, ...)`**
+  - `y` refers to the variable for which you created a Q-Q plot
+  - `...` lets you control graphical elements of the plot like `pch`, `col`, etc.
+  - Function can only be used *after* using `qqnorm()`
+- **`confint(object, level)`**
+  - `object` is a fitted regression model (an `lm` object)
+  - `level` is the required confidence level, must be between 0 and 1.
+
