@@ -51,7 +51,8 @@ plot(body_mass_g ~ flipper_length_mm,
      ylab = "Body Mass (g)", xlab = "Flipper Length (mm)",
      main = "Penguin Body Mass vs. Flipper Length",
      pch = c(0,1,2)[penguins$species],
-     col = c("darkorange1", "mediumorchid2", "darkcyan")[penguins$species])
+     col = c("darkorange1", "mediumorchid2", "darkcyan")[penguins$species]
+)
 legend("topleft",
        legend = c("Adelie", "Chinstrap", "Gentoo"),
        pch = c(0,1,2),
@@ -68,7 +69,7 @@ summary(mod1)
 The variables `speciesChinstrap` and `speciesGentoo` are the indicator variables for the species. 
 - When the penguin species is Adelie, `speciesChinstrap` = 0 and `speciesGentoo` = 0. 
 - When the penguin species is Chinstrap, `speciesChinstrap` = 1 and `speciesGentoo` = 0. 
-- When the penguin species is Gentoo, `speciesChinstrap` = 0 and `speciesGentoo` = 0.
+- When the penguin species is Gentoo, `speciesChinstrap` = 0 and `speciesGentoo` = 1.
 
 The equation for the regression line is (fill in the values):
 
