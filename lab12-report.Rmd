@@ -102,7 +102,7 @@ Replace this text with your answer to Question 5.
 
 ## Question 6
 :::{.question}
-Interpret the value of the horizontal intercept in context.
+Interpret the value of the vertical (y) intercept in context.
 :::
 
 :::{.answer}
